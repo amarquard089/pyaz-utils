@@ -1,0 +1,50 @@
+[project]
+name = "pyaz-utils"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+license = "Mit"
+authors = [
+    { name = "Alexander Marquard", email = "marquard82@googlemail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "azure-functions>=1.23.0",
+    "pydantic>=2.11.3",
+]
+
+[project.scripts]
+pyaz-utils = "pyaz_utils:main"
+
+[project.optional-dependencies]
+durable = [
+    "azure-functions-durable>=1.2.10",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "pytest-coverage>=0.0",
+]
+
+
+[tool.black]
+line-length = 88
+target-version = ['py312']
+
+[tool.isort]
+atomic = true
+profile = "black"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
+addopts = "--cov --cov-report=term-missing --cov-report=html"
+
+[tool.coverage.run]
+source = ["src/pyaz_utils"]
