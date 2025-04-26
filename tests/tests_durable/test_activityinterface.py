@@ -5,7 +5,7 @@ import pytest
 from azure.functions.decorators.function_app import FunctionBuilder
 from pydantic import BaseModel
 
-from pyaz_utils.durable.ActivityInterface import ActivityInterface
+from pyaz_utils.durable import ActivityInterface
 
 
 @dataclass
@@ -71,3 +71,12 @@ def test_init_basemodel(BaseModel_activity_str: FunctionBuilder):
     )
     assert issubclass(act_int.inpt, BaseModelTest)
     assert issubclass(act_int.outpt, str)
+
+
+# def test_make_activity(app: df.DFApp):
+#     @make_activity_interface(inpt=str,outpt=str)
+#     @app.activity_trigger(input_name="city")
+#     def hello(city: str) -> str:
+#         return f"hello {city}"
+
+#     hello.call(context=)
